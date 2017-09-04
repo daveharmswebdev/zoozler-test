@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <form #todoForm="ngForm" (ngSubmit)="addTodo(todoForm.value)" autocomplete="off">
+        <div class="form-group">
+          <label for="message">Todo</label>
+          <input [(ngModel)]="todo" type="text" class="form-control" id="todo" name="todo" placeholder="todo...">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <hr>
+    </div>
+  </div>
+</div>
