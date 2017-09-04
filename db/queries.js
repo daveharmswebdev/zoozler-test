@@ -4,8 +4,6 @@ function Todos() {
   return knex('todos');
 }
 
-// *** queries *** //
-
 function getAll() {
   return Todos().select();
 }
@@ -14,7 +12,13 @@ function add(todo) {
   return Todos().insert(todo, 'id');
 }
 
+function getSingleTodo(todoId) {
+  return Todos().where('id', parseInt(todoId)).first();
+}
+
 
 module.exports = {
-  getAll: getAll
+  getAll: getAll,
+  getSingleTodo: getSingleTodo,
+  add: add
 };

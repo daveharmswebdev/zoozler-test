@@ -8,7 +8,7 @@ const todos = [
   { todo: 'pick up mom', when: 'tomorrow', where: 'airport' },
 ];
 
-router.get('/todos', (req, res) => {
+router.get('/todos', (req, res, next) => {
   // res.json(todos);
 
   queries.getAll()
@@ -20,6 +20,16 @@ router.get('/todos', (req, res) => {
   })
 });
 
+router.get('/todos/:id', function(req, res, next) {
+  queries.getSingleTodo(req.params.id)
+  .then(function(todo) {
+    res.status(200).json(todo);
+  })
+  .catch(function(error) {
+    next(error);
+  })
+})
+
 router.post('/todos', (req, res) => {
   // console.log(req.body);
   // const todo = req.body;
@@ -30,7 +40,7 @@ router.post('/todos', (req, res) => {
   queries.add(req.body)
   .then(function(todoID) {
     console.log('yeah');
-    return queries.getSingle(todoID);
+    return queries.getSingleTodo(todoID);
   })
   .then(function(todo) {
     res.status(200).json(todo);
