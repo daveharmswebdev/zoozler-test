@@ -7,7 +7,9 @@ import { TodoService } from './todo.service';
   styleUrls: ['./todo.component.css']
 })
 export class TodoComponent implements OnInit {
-  todo: string;
+  todo = '';
+  when = '';
+  where = '';
   todos: any[];
 
   constructor(private todoService: TodoService) { }
@@ -25,6 +27,8 @@ export class TodoComponent implements OnInit {
         this.todos = todos;
         console.log(response, this.todos);
         this.todo = '';
+        this.when = '';
+        this.where = '';
       });
     });
   }
